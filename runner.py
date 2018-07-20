@@ -1,6 +1,6 @@
-from lib.scrolling_letter import ScrollingLetter
+from lib.scrolling_message import ScrollingMessage
 from lib.projector import Projector
 
-sm = ScrollingLetter()
+sm = ScrollingMessage("HELLO WORLD")
 p  = Projector(sm)
 p.animate()
