@@ -2,7 +2,7 @@ from letters import letters
 
 class ScrollingMessage:
     def __init__(self, message):
-        self.refresh_rate = 0.025
+        self.refresh_rate = 0.015
         self.finished = False
         self.rotation = 0
         self.frame    = 0
@@ -55,10 +55,10 @@ class ScrollingMessage:
         next_frame  = [0] * (256 * characters)
 
         for index, item in enumerate(self.message):
-            if index % line_length == line_length - 1:
-                next_position = index - (line_length - 1)
+            if index % line_length == 0:
+                next_position = index + (line_length - 1)
             else:
-                next_position = index + 1
+                next_position = index - 1
             next_frame[next_position] = item
 
         self.message = next_frame
