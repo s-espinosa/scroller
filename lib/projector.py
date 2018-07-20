@@ -8,8 +8,8 @@ class Projector:
         unicorn.brightness(0.2)
         unicorn.rotation(self.movie.rotation)
 
-    def animate(self):
-        condition = self.finished == False
+    def animate(self, duration):
+        now       = time.time()
         while self.finished == False:
             pixels = self.movie.step()
             for i in pixels:
@@ -17,8 +17,8 @@ class Projector:
                 unicorn.set_pixel(x, i["y"], i["r"], i["g"], i["b"])
             unicorn.show()
             time.sleep(self.movie.refresh_rate)
-            self.finished = self.movie.finished
-        unicorn.off()
+            if time.time() > now + duration:
+                self.finished = True
 
     def flip(self, x):
         """docstring for flip"""
